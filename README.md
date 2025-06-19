@@ -3,12 +3,23 @@
 A comprehensive vehicle detection, tracking, and traffic analysis system that implements two different approaches:
 1. DETR (DEtection TRansformer) based implementation
 2. Faster R-CNN based implementation
+3. RF-DETR with ConvNext Backbone
 
-Both implementations use DeepSORT for object tracking and provide similar functionality with different underlying detection architectures.
+First and Second implementations use DeepSORT for object tracking and provide similar functionality with different underlying detection architectures.
+
+### RF-DETR
+
+> ⚠️ **Note**: RF-DETR training was **not completed** due to hardware limitations. The model takes significantly longer to train compared to DETR and Faster R-CNN, especially when relying on Apple's MPS backend (MacBook M1/M2 GPU support).
+
+When training on an M1 Mac, PyTorch often falls back to CPU for unsupported operations, leading to extremely slow performance. One such warning observed during training:
+>>"UserWarning: The operator 'aten::grid_sampler_2d_backward' is not currently supported on the MPS backend
+and will fall back to run on the CPU. This may have performance implications.
+(Triggered internally at /Users/runner/work/pytorch/pytorch/pytorch/aten/src/ATen/mps/MPSFallback.mm:14.)"
+
 
 ## Features
 
-- Real-time vehicle detection using either DETR or Faster R-CNN
+- Real-time vehicle detection using DETR, Faster R-CNN, or RF-DETR.
 - Multi-object tracking with DeepSORT
 - Vehicle counting and classification
 - Traffic analysis and statistics
